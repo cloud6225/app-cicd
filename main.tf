@@ -277,7 +277,9 @@ data "aws_instance" "myinstance" {
 
 # add/update the DNS record api.dev.yourdomainname.tld. to the public IP address of the EC2 instance 
 data "aws_route53_zone" "selected" {
-  name         = "dev.${var.domain_Name}"
+
+  name = format("%s.%s",var.aws_profile_name, var.domain_Name)
+
   private_zone = false
 }
 
